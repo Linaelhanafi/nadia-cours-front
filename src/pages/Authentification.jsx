@@ -15,7 +15,7 @@ function Authentification() {
         try {
             console.log({ email, password }, setAuthState, navigate)
             const response = await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/User/login`, { email, password });
-            console.log(response.data.token)
+            console.log(response.data)
             localStorage.setItem('token', response.data.token);
             setAuthState(prevState => ({
                 ...prevState,
@@ -24,6 +24,7 @@ function Authentification() {
             }));
             navigate('/');
         } catch (error) {
+            alert("Email or Password invalid")
             console.log(error)
         }
     }
