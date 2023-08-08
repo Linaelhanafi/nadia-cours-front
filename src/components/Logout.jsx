@@ -21,7 +21,7 @@ function Logout() {
     useEffect(() => {
         handleLogout();
         navigate('/');
-    }, [navigate]);
+    }, []);
 
     return null;
 }
