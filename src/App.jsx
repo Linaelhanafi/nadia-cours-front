@@ -14,11 +14,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Acceuil />} />
-        <Route path="/cours" element={<PrivateRoute element={<Cours />} />} />
+        {/* <Route path="/cours" element={<PrivateRoute element={<Cours />} />} /> */}
+        <Route path="/cours" element={<Cours />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Authentification />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/admin" element={<PrivateRoute element={<Admin />} />} />
+        {/* <Route path="/admin" element={<PrivateRoute element={<Admin />} />} /> */}
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
