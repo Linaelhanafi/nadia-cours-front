@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Acceuil />} />
         <Route path='/cours' element={<Cours />} />
