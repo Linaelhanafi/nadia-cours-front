@@ -53,11 +53,11 @@ function Admin() {
             },
         }
     );
-    useEffect(() => {
-        if (!authState.isAuthenticated) {
-            navigate('/login');
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (!authState.isAuthenticated) {
+    //         navigate('/login');
+    //     }
+    // }, [])
     return (<>
         <div className="h-24 navbar w-full flex justify-center bg-blue-900">
             <h1 className="text-white text-3xl w-full justify-center rounded-md px-3 py-2 font-bold">Admin</h1>
