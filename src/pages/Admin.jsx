@@ -8,10 +8,7 @@ import { useFormik } from 'formik';
 import axios from "axios"
 
 function Admin() {
-    const navigate = useNavigate()
-    const { authState } = useContext(AuthContext)
     const uploadFileMutation = useMutation(async (formData) => {
-
         await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/Course/uploadCourse`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -41,10 +38,12 @@ function Admin() {
             console.log(e)
         }
     }
+
     const formik = useFormik({
         initialValues,
         onSubmit,
     });
+
     const { isLoading, isError, data, error } = useQuery({ queryKey: ['coursesadmin'], queryFn: getCourses })
     const mutation = useMutation((id) => { deleteCourse(id) },
         {
@@ -53,11 +52,7 @@ function Admin() {
             },
         }
     );
-    // useEffect(() => {
-    //     if (!authState.isAuthenticated) {
-    //         navigate('/login');
-    //     }
-    // }, [])
+
     return (<>
         <div className="h-24 navbar w-full flex justify-center bg-blue-900">
             <h1 className="text-white text-3xl w-full justify-center rounded-md px-3 py-2 font-bold">Admin</h1>
