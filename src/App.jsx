@@ -6,10 +6,11 @@ import Contact from './pages/Contact'
 import Logout from './components/Logout'
 import Authentification from './pages/Authentification'
 import Admin from './pages/Admin'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Acceuil />} />
         <Route path='/cours' element={<Cours />} />
@@ -18,7 +19,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/Admin" element={<Admin />} />
       </Routes>
-    </>
+    </BrowserRouter>
   )
 }
 
