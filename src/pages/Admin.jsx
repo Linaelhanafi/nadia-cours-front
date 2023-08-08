@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
+import { AuthContext } from "/src/context/AuthContext.jsx";
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getCourses, deleteCourse } from '../helpers/courseApi.js'
 import { Icon } from '@iconify/react';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useFormik } from 'formik';
 import axios from "axios"
 
 function Admin() {
+    const navigate = useNavigate()
+    const { authState } = useContext(AuthContext)
     const uploadFileMutation = useMutation(async (formData) => {
 
         await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/Course/uploadCourse`, formData, {
@@ -50,7 +53,11 @@ function Admin() {
             },
         }
     );
-
+    // useEffect(() => {
+    //     if (!authState.isAuthenticated) {
+    //         navigate('/login');
+    //     }
+    // }, [authState, navigate])
     return (<>
         <div className="h-24 navbar w-full flex justify-center bg-blue-900">
             <h1 className="text-white text-3xl w-full justify-center rounded-md px-3 py-2 font-bold">Admin</h1>
@@ -67,15 +74,7 @@ function Admin() {
                     <button className="btn my-10 bg-blue-900 text-white" onClick={() => window.my_modal_1.showModal()}>Ajouter un cours</button>
                     <dialog id="my_modal_1" className="modal">
                         <form method="dialog" onSubmit={formik.handleSubmit} className="modal-box flex flex-col justify-center items-center bg-gray-100">
-                            <div className='flex'>
-                                <h2 className="flex flex-start text-black font-bold text-3xl">Ajouter un cours</h2>
-                                <div className='w-44'></div>
-                                <div className="modal-action">
-                                    <button className="btn border-none bg-blue-900 btn-circle">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                                    </button>
-                                </div>
-                            </div>
+                            <h2 className="flex justify center text-gray-500 font-bold text-3xl mb-8">Ajouter un cours</h2>
                             <div className="flex flex-col">
                                 <label className='pb-4 mr-5 text-lg'>Nom du cours</label>
                                 <input type="text" placeholder="" className="input bg-gray-300 input-bordered w-full max-w-xs text-black" name="name" value={formik.values.name} onChange={formik.handleChange} />
@@ -88,7 +87,7 @@ function Admin() {
                                     formik.setFieldValue('file', event.currentTarget.files[0]);
                                 }} />
                             </div>
-                            <button type="button" className="btn flex justify-center items-center border-none text-white m-10 py-4 px-10 bg-blue-900" >Ajouter</button>
+                            <button type="submit" className="btn flex justify-center items-center border-none text-white m-10 py-4 px-10 bg-blue-900" >Ajouter</button>
                         </form>
                     </dialog >
                 </div>

@@ -17,15 +17,16 @@ export const handleLogin = async ({ email, password }, setAuthState, navigate) =
     }
 };
 
-export const handleLogout = () => {
-    try {
-        localStorage.removeItem('token')
-        setAuthState({
-            isAuthenticated: false,
-            token: null,
-            user: null
-        })
-    } catch (error) {
-        console.log(error)
-    }
-};
+// export const handleLogout = () => {
+//     try {
+//         localStorage.removeItem('token')
+//         setAuthState({
+//             isAuthenticated: false,
+//             token: null,
+//             user: null,
+//             role: null
+//         })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// };

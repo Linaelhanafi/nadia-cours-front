@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: false,
         token: null,
         user: null,
-        role: ""
+        role: null
     });
 
     return (
