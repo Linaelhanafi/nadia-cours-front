@@ -20,8 +20,8 @@ function Logout() {
     };
     useEffect(() => {
         handleLogout();
-        navigate('/');
-    }, []);
+        navigate('/login');
+    }, [navigate]);
 
     return null;
 }
