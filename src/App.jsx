@@ -14,11 +14,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Acceuil />} />
-        <PrivateRoute path="/cours" element={<Cours />} />
+        <Route path="/cours" element={<PrivateRoute element={<Cours />} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Authentification />} />
         <Route path="/logout" element={<Logout />} />
-        <PrivateRoute path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<PrivateRoute element={<Admin />} />} />
       </Routes>
     </BrowserRouter>
   );
