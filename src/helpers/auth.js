@@ -17,7 +17,7 @@ export const handleLogin = async ({ email, password }, setAuthState, navigate) =
     }
 };
 
-export const handleLogout = (navigate) => {
+export const handleLogout = () => {
     try {
         localStorage.removeItem('token')
         setAuthState({

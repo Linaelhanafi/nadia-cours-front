@@ -8,21 +8,35 @@ const background = new URL('../assets/etudiants-pause-cafe.jpg', import.meta.url
 const logo = new URL('../assets/logo_m1.png', import.meta.url)
 
 function Authentification() {
-    const { setAuthState } = useContext(AuthContext)
+    const { setAuthState, authState } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const handleLogin = async ({ email, password }) => {
         try {
-            console.log({ email, password }, setAuthState, navigate)
+            event.preventDefault();
+            // console.log({ email, password }, setAuthState, navigate)
             const response = await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/User/login`, { email, password });
-            console.log(response.data)
+            // console.log(response.data)
             localStorage.setItem('token', response.data.token);
             setAuthState(prevState => ({
                 ...prevState,
                 isAuthenticated: true,
-                token: response.data.token
+                token: response.data.token,
+                role: response.data.role
             }));
-            navigate('/');
+            if (authState.role === 'ADMIN') {
+                navigate('/admin');
+                setAuthState(prevState => ({
+                    ...prevState,
+                    role: null
+                }));
+            } else if (authState.role === 'USER') {
+                navigate('/');
+                setAuthState(prevState => ({
+                    ...prevState,
+                    role: null
+                }));
+            }
         } catch (error) {
             alert("Email or Password invalid")
             console.log(error)
