@@ -63,7 +63,7 @@ function Authentification() {
                         <img src={logo} alt="vector" height={"450px"} width={"450px"} />
                     </div>
                     <h2 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
-                        Bienvenu à la platforme de Pr.Ouesdadi Nadia
+                        Bienvenu à la platforme de Pr.El Ouesdadi Nadia
                     </h2>
                     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                         <form className="space-y-6" onSubmit={formik.handleSubmit} method="POST">

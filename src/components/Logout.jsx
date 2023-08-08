@@ -21,7 +21,7 @@ function Logout() {
     useEffect(() => {
         handleLogout();
         navigate('/login');
-    }, [authState, navigate]);
+    }, [navigate]);
 
     return null;
 }
