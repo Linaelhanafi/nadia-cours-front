@@ -8,6 +8,8 @@ import { useFormik } from 'formik';
 import axios from "axios"
 
 function Admin() {
+    const { authState } = useContext(AuthContext)
+    const navigate = useNavigate()
     const uploadFileMutation = useMutation(async (formData) => {
         await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/Course/uploadCourse`, formData, {
             headers: {
@@ -22,6 +24,7 @@ function Admin() {
         section: "",
         file: null,
     };
+
 
     const onSubmit = async (values) => {
         const formData = new FormData();
@@ -52,7 +55,14 @@ function Admin() {
             },
         }
     );
-
+    useEffect(() => {
+        const redirectToRolePage = async () => {
+            if (authState.isAuthenticated) {
+                await navigate('/admin');
+            }
+        }
+        redirectToRolePage();
+    }, [navigate]);
     return (<>
         <div className="h-24 navbar w-full flex justify-center bg-blue-900">
             <h1 className="text-white text-3xl w-full justify-center rounded-md px-3 py-2 font-bold">Admin</h1>

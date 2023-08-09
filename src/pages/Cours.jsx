@@ -6,16 +6,6 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 function Cours() {
-    const { authState } = useContext(AuthContext);
-    const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     if (!authState.isAuthenticated) {
-    //         navigate('/login');
-    //     }
-
-    // }, [authState, navigate])
-
     return (
         <>
             <Navbar />

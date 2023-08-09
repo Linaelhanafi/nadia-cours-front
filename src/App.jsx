@@ -7,7 +7,7 @@ import Logout from './components/Logout'
 import Authentification from './pages/Authentification'
 import Admin from './pages/Admin'
 import { BrowserRouter } from 'react-router-dom'
-import { PrivateRoute } from './helpers/PrivateRoute'
+import PrivateRoute from './helpers/PrivateRoute'
 
 function App() {
   return (
@@ -15,12 +15,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Acceuil />} />
         {/* <Route path="/cours" element={<PrivateRoute element={<Cours />} />} /> */}
-        <Route path="/cours" element={<Cours />} />
+        {/* <Route path="/cours" element={<Cours />} /> */}
+        <Route path="/admin" element={<PrivateRoute requiredRole="ADMIN" element={<Admin />} />} />
+        <Route path="/cours" element={<PrivateRoute element={<Cours />} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Authentification />} />
         <Route path="/logout" element={<Logout />} />
         {/* <Route path="/admin" element={<PrivateRoute element={<Admin />} />} /> */}
-        <Route path="/admin" element={<Admin />} />
+        {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>
     </BrowserRouter>
   );

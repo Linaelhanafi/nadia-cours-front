@@ -1,13 +1,18 @@
 import { useContext } from 'react'
+import { Navigate, Route } from 'react-router-dom';
 import { AuthContext } from "/src/context/AuthContext.jsx";
-import { Navigate } from 'react-router-dom';
+function PrivateRoute({ element, requiredRole }) {
+    const { authState } = useContext(AuthContext)
 
-export function PrivateRoute({ element }) {
-    const { authState } = useContext(AuthContext);
-
-    if (!authState.isAuthenticated) {
+    if (!authState.isAuthenticated && !localStorage.getItem("token")) {
         return <Navigate to="/login" />;
     }
 
-    return element;
+    if (requiredRole && authState.role !== requiredRole && !localStorage.getItem("token")) {
+        return <Navigate to="/" />;
+    }
+
+    return element
 }
+
+export default PrivateRoute;

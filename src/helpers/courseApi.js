@@ -10,15 +10,7 @@ export const getCourses = async () => {
     }
 }
 
-// export const addCourse = async ({ name, section, subject, file }, formdata) => {
-//     try {
-//         const response = await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/Course/uploadCourse`, formdata, { name, section, subject, file })
-//         return await response.data
-//     } catch (e) {
-//         console.log(e)
-//         return null
-//     }
-// }
+
 
 export const deleteCourse = async (id) => {
     try {

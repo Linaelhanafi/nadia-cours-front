@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import axios from "axios"
 import { AuthContext } from '../context/AuthContext'
 import { useFormik } from 'formik'
@@ -19,15 +19,30 @@ function Authentification() {
                 ...prevState,
                 isAuthenticated: true,
                 token: response.data.token,
-                role: response.data.role
+                role: response.data.role,
+                isLoading: false
             }))
             localStorage.setItem('token', response.data.token);
-            console.log(authState)
         } catch (error) {
             alert("Email or Password invalid")
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        const redirectToRolePage = async () => {
+            if (authState.isAuthenticated) {
+                if (authState.role === 'ADMIN') {
+                    await navigate('/admin');
+                } else if (authState.role === 'USER') {
+                    await navigate('/');
+                }
+            }
+        };
+
+        redirectToRolePage();
+    }, [authState, navigate]);
+
 
     const formik = useFormik({
         initialValues: {
