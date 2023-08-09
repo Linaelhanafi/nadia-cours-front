@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import { Link, useNavigate } from "react-router-dom"
 import { useFormik } from 'formik';
 import axios from "axios"
+const logo = new URL('../assets/logo.png', import.meta.url).href
 
 function Admin() {
     const { authState } = useContext(AuthContext)
@@ -64,14 +65,17 @@ function Admin() {
         redirectToRolePage();
     }, [navigate]);
     return (<>
-        <div className="h-24 navbar w-full flex justify-center bg-blue-900">
-            <h1 className="text-white text-3xl w-full justify-center rounded-md px-3 py-2 font-bold">Admin</h1>
-            <div className='flex flex-end float-right'>
-                <Link
-                    to="/logout"
-                    className='btn border-none bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-gray-700 mr-20 rounded-md px-6 font-medium'
-                >Logout <Icon icon="solar:logout-2-bold" /></Link>
-            </div>
+        <div className="h-24 navbar w-full flex justify-center items-center bg-blue-900">
+            <img
+                className="h-20 w-18"
+                src={logo}
+                alt="Your Company"
+            />
+            <h1 className="flex text-white text-3xl w-10/12 justify-center rounded-md px-3 py-2 font-bold">Admin</h1>
+            <Link
+                to="/logout"
+                className='btn border-none bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-gray-700 rounded-md px-6 font-medium'
+            >Logout <Icon icon="solar:logout-2-bold" /></Link>
         </div>
         <div className='flex justify-center items-center'>
             <div className="flex flex-col justify-center items-end">
